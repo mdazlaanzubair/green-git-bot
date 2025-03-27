@@ -1,0 +1,198 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "🤖🌱 Green Git Bot",
+        "description": "A Node.js tool that leverages the GitHub API via Octokit to automate commit generation. It allows you to transform your GitHub contribution graph.",
+        "version": "1.0.0"
+    },
+    "host": "greengitbot.terminal.com.se",
+    "basePath": "/",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/api/random-commits": {
+            "post": {
+                "summary": "Generate random commits",
+                "description": "Generates a random commit pattern in the specified repository.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for generating random commits.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "username": {
+                                    "type": "string"
+                                },
+                                "access_token": {
+                                    "type": "string"
+                                },
+                                "repository": {
+                                    "type": "string"
+                                },
+                                "num_of_commits": {
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "username",
+                                "access_token",
+                                "repository",
+                                "num_of_commits"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Commits generated successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/dense-commits": {
+            "post": {
+                "summary": "Generate dense commits",
+                "description": "Generates commits over a given date range with a specified number of commits per day.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for generating dense commits.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "username": {
+                                    "type": "string"
+                                },
+                                "access_token": {
+                                    "type": "string"
+                                },
+                                "repository": {
+                                    "type": "string"
+                                },
+                                "start_date": {
+                                    "type": "string",
+                                    "format": "date",
+                                    "example": "01-01-2024"
+                                },
+                                "end_date": {
+                                    "type": "string",
+                                    "format": "date",
+                                    "example": "31-12-2024"
+                                },
+                                "commits_per_day": {
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "username",
+                                "access_token",
+                                "repository",
+                                "start_date",
+                                "end_date",
+                                "commits_per_day"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dense commits generated successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/input-string-mapping-commits": {
+            "post": {
+                "summary": "Map input string to commit pattern",
+                "description": "Maps an input string to a contribution graph pattern and generates commits accordingly.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Payload for mapping input string to commit pattern.",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "username": {
+                                    "type": "string"
+                                },
+                                "access_token": {
+                                    "type": "string"
+                                },
+                                "repository": {
+                                    "type": "string"
+                                },
+                                "input_string": {
+                                    "type": "string"
+                                },
+                                "startDate": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "example": "2024-01-01T00:00:00Z"
+                                },
+                                "spacing": {
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "username",
+                                "access_token",
+                                "repository",
+                                "input_string",
+                                "startDate"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Input string mapping commits generated successfully."
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    }
+}
