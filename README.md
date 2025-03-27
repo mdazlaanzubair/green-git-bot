@@ -1,57 +1,133 @@
-# GreenGitBot: Automated GitHub Contribution Enhancement System 🤖🌱
+# Green Git Bot 🤖🌱
 
-Concerned about the sparse appearance of your GitHub contribution graph? Do you desire a more verdant profile that effectively showcases active development?  GreenGitBot provides a solution.
+Green Git Bot is a Node.js tool that leverages the GitHub API via Octokit to automate commit generation. It allows you to transform your GitHub contribution graph by:
 
-## What is GreenGitBot?
+- **Backdating or future-dating commits:** Create commits with custom dates.
 
-GreenGitBot is a Node.js-powered API designed to automatically enhance your GitHub contribution graph.  It functions as an automated system that cultivates your digital presence.  Upon configuration, it establishes a repository (named, by default, GreenGitBot) within your GitHub account and diligently adds daily commits, ensuring the consistent growth of your contribution graph.
+- **Generating random commit patterns:** Simulate natural commit activity.
 
-### Key Features:
+- **Mapping input strings to commit patterns:** Convert text or symbols into a grid of commit activity, allowing you to "print" designs on your GitHub contribution graph.
 
-* **Automated Contribution Generation:** GreenGitBot eliminates the need for manual contribution activity.
+> Note: Manipulating your contribution graph can be fun for demonstration or artistic purposes, but please use this tool responsibly in accordance with GitHub’s terms of service.
 
-* **Configurable Parameters:** Users provide essential credentials, including their GitHub token and username, to initiate the automated process.
+## Features
 
-* **Open Source Architecture:** GreenGitBot is open-source, facilitating community contributions to improve its functionality and maintain its operational integrity.
+- **Custom Commit Dates:** Generate commits on any specified date.
 
-### How Does It Work?
+- **Dense Commit Generation:** Control the number of commits per day to adjust the visual density of your contribution graph.
 
-* **Credential Provision:** The user supplies the API with their GitHub username and a personal access token.
+- **Input String Mapping:** Map letters and symbols to a contribution grid using a 5×5 character map.
 
-* **Repository Establishment:** GreenGitBot creates a new repository in the user's account (named GreenGitBot by default).
+- **Random Patterns:** Create random commit patterns to simulate activity.
 
-* **Regular Commit Activity:** On a daily basis, GreenGitBot adds a small commit to the designated repository, incorporating randomly generated content into a file.
+## Prerequisites
 
-* **Contribution Graph Enhancement:** Over time, the accumulation of these daily commits contributes to a visually enhanced contribution graph, characterized by a greater number of green squares.
+- **Node.js:** Version 14 or later is recommended.
 
-### How to Use GreenGitBot
+- **GitHub Personal Access Token:** Create one Personal access tokens (classic) from [**GitHub settings**](https://github.com/settings/tokens).
 
-**API Interaction:**
+## Installation
 
-Utilize a tool such as curl or Postman to send a POST request to `http://localhost:3000/greengitbot`:
+No configuration required
 
-```curl
-curl -X POST \
-  http://localhost:3000/greengitbot \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "username": "your-github-username",
-    "token": "your-github-token",
-    "repoName": "GreenGitBot",  // Or a custom repo name
-    "fileName": "daily-commits" // The name of the file to create/update
-  }'
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/mdazlaanzubair/green-git-bot.git
+
+   cd green-git-bot
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+
+   npm start
+   ```
+
+## Usage
+
+Green Git Bot currently exposes following three API endpoints for generating commit patterns.:
+
+- `/api/green-git-bot` - Posts random commits
+- `/api/dense-commits` - Posts dense commits between specified dates
+- `/api/input-string-mapping` - Posts commits based on input string
+
+## How It Works
+
+**Green Git Bot** uses [**Octokit**](https://github.com/octokit) to interact with the [**GitHub API**](https://docs.github.com/en/rest?apiVersion=2022-11-28). Its primary functions include:
+
+1. **Repository Management:**
+
+   - Checks if a repository exists.
+
+   - Creates a new repository if it doesn't exist.
+
+2. **File Management:**
+
+   - Ensures required files (`README.md` and `bot_commits.json`) are present.
+
+   - Updates `bot_commits.json` with commit entries.
+
+3. Commit Generation:
+
+   - Generates commits with specified dates using the Git Data API so that the commit's author and committer metadata reflect the date provided.
+
+   - Supports dense commit generation (multiple commits per day) and random commit distribution.
+
+4. Pattern Mapping:
+
+   - Uses a 5×5 character map to represent each letter or symbol.
+
+   - Combines character matrices with spacing to form a larger grid.
+
+   - Maps each grid cell to a specific date (using weeks for columns and days for rows) and generates commits accordingly.
+
+## Character Map
+
+Each character in the input string is represented by a 5×5 grid where:
+
+- 1 indicates a commit point.
+
+- 0 indicates no commit.
+
+Example for characters A, B, etc.:
+
+```javascript
+const charMap = {
+  A: [
+    [0, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+  ],
+  B: [
+    [1, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [1, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [1, 1, 1, 1, 0],
+  ],
+  // ... (other characters including space)
+};
 ```
 
-* Replace `your-github-username` and `your-github-token` with your actual GitHub username and personal access token.
+## Contributions
 
-* You may customize the `repoName` and `fileName` parameters as needed.
+Contributions are welcome! If you have suggestions or improvements, please open an issue or submit a pull request.
 
-* Monitor your GitHub profile to observe the appearance of new commits.
+## Future Improvements
 
-### Disclaimer
+**What's next?**
 
-GreenGitBot is intended for educational and demonstration purposes.  Users are advised to ensure their usage complies with GitHub's terms of service.  The developer of GreenGitBot is not responsible for any misuse of this tool.
+Experiment with different patterns on your contribution graph. Create some cool designs something like heart, rocket or thumbs-up etc.
 
-## License 
+## Disclaimer
 
-[**MIT License**](https://github.com/mdazlaanzubair/green-git-bot/blob/main/LICENSE)
+Green Git Bot is provided for educational and demonstration purposes. Misrepresenting your activity on GitHub may violate GitHub's terms of service. Use responsibly.
+
+## License
+
+This project is licensed under the *MIT License*. See the [**License**](https://github.com/mdazlaanzubair/green-git-bot/blob/main/LICENSE) file for details.
