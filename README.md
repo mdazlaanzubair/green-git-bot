@@ -4,7 +4,7 @@ Concerned about the sparse appearance of your GitHub contribution graph? Do you 
 
 ## What is GreenGitBot?
 
-GreenGitBot is a Node.js-powered API designed to automatically enhance your GitHub contribution graph.  It functions as an automated system that cultivates your digital presence.  Upon configuration, it establishes a repository (named, by default, GitGreenBot) within your GitHub account and diligently adds daily commits, ensuring the consistent growth of your contribution graph.
+GreenGitBot is a Node.js-powered API designed to automatically enhance your GitHub contribution graph.  It functions as an automated system that cultivates your digital presence.  Upon configuration, it establishes a repository (named, by default, GreenGitBot) within your GitHub account and diligently adds daily commits, ensuring the consistent growth of your contribution graph.
 
 ### Key Features:
 
@@ -18,7 +18,7 @@ GreenGitBot is a Node.js-powered API designed to automatically enhance your GitH
 
 * **Credential Provision:** The user supplies the API with their GitHub username and a personal access token.
 
-* **Repository Establishment:** GreenGitBot creates a new repository in the user's account (named GitGreenBot by default).
+* **Repository Establishment:** GreenGitBot creates a new repository in the user's account (named GreenGitBot by default).
 
 * **Regular Commit Activity:** On a daily basis, GreenGitBot adds a small commit to the designated repository, incorporating randomly generated content into a file.
 
@@ -28,16 +28,16 @@ GreenGitBot is a Node.js-powered API designed to automatically enhance your GitH
 
 **API Interaction:**
 
-Utilize a tool such as curl or Postman to send a POST request to `http://localhost:3000/gitgreenbot`:
+Utilize a tool such as curl or Postman to send a POST request to `http://localhost:3000/greengitbot`:
 
 ```curl
 curl -X POST \
-  http://localhost:3000/gitgreenbot \
+  http://localhost:3000/greengitbot \
   -H 'Content-Type: application/json' \
   -d '{
     "username": "your-github-username",
     "token": "your-github-token",
-    "repoName": "GitGreenBot",  // Or a custom repo name
+    "repoName": "GreenGitBot",  // Or a custom repo name
     "fileName": "daily-commits" // The name of the file to create/update
   }'
 ```
