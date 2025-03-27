@@ -19,7 +19,7 @@ app.use(router);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Green Git Bot listening at http://localhost:${port}`);
 });
 
 export default app;
