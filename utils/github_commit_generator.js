@@ -250,7 +250,7 @@ class GitHubRepoManager {
         name: this.repository,
         description:
           "GreenGitBot repo created to transform the GitHub activity monitor.",
-        private: false,
+        private: true,
       });
       return { data: response.data };
     } catch (error) {
