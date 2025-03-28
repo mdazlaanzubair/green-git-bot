@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import express from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
@@ -6,7 +8,7 @@ import router from "./routes/router.js"
 import swaggerDocument from "./swagger-output.json" with { type: "json" };
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
@@ -16,5 +18,5 @@ app.use(router);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Git bot is listening at http://localhost:${port}`);
 });

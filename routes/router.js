@@ -1,7 +1,7 @@
 import express from "express";
 
 import { validate_req_body } from "../utils/request_validator.js";
-import GitHubRepoManager from "../utils/GithubCommitGenerator.js";
+import GitHubRepoManager from "../utils/github_commit_generator.js";
 
 const router = express.Router();
 
