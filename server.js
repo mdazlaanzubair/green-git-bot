@@ -13,6 +13,9 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
+// added base route
+app.get("/", (req, res) => res.send("Git bot is running"));
+
 app.use(router);
 
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
