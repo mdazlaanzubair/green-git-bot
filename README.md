@@ -48,11 +48,13 @@ No configuration required
 
 ## Usage
 
-Green Git Bot currently exposes following three API endpoints for generating commit patterns.:
+Green Git Bot currently exposes following three API endpoints for generating commit patterns:
 
 - `/api/green-git-bot` - Posts random commits
 - `/api/dense-commits` - Posts dense commits between specified dates
 - `/api/input-string-mapping` - Posts commits based on input string
+
+View the swagger documentation [**API Docs**](https://greengitbot.terminal.com.se/api/docs/)
 
 ## How It Works
 
